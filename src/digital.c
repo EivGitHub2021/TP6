@@ -28,10 +28,19 @@ SPDX-License-Identifier: MIT
 /* === Headers files inclusions =============================================================== */
 
 #include "digital.h"
+#include "chip.h"
+#include <stdint.h>
 
 /* === Macros definitions ====================================================================== */
 
 /* === Private data type declarations ========================================================== */
+
+//! Estructura para almacenar el descriptor de una salida digital
+struct digital_output_s{
+   uint8_t port;  //!< Puerto GPIO
+   uint8_t pin;   //!< Terminal del puerto GPIO de la salida digital
+};
+
 
 /* === Private variable declarations =========================================================== */
 
@@ -44,6 +53,29 @@ SPDX-License-Identifier: MIT
 /* === Private function implementation ========================================================= */
 
 /* === Public function implementation ========================================================== */
+digital_output_t DigitalOutputCreate(uint8_t port, uint8_t pin){
+   static struct digital_output_s output;
+
+   output.port = port;
+   output.pin = pin;
+
+   Chip_GPIO_SetPinState(LPC_GPIO_PORT, output.port, output.pin, false);
+   Chip_GPIO_SetPinDIR(LPC_GPIO_PORT, output.port, output.pin, true);
+
+   return &output;
+}
+void DigitalOutputActivate(digital_output_t output){
+
+   return;
+}
+void DigitalOutputDesactivate(digital_output_t output){
+
+   return;
+}
+void DigitalOutputToggle(digital_output_t output){
+   Chip_GPIO_SetPinToggle(LPC_GPIO_PORT, output->port, output->pin);
+   return;
+}
 
 /* === End of documentation ==================================================================== */
 
