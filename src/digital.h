@@ -41,6 +41,9 @@ extern "C" {
 //! Referencia para gestionar la salida digital
 typedef struct digital_output_s * digital_output_t;
 
+//! Referencia para gestionar las entradas digitales
+typedef struct digital_input_s * digital_input_t;
+
 /* === Public data type declarations =========================================================== */
 
 /* === Public variable declarations ============================================================ */
@@ -75,6 +78,15 @@ void DigitalOutputDesactivate(digital_output_t output);
  * @param output puntero al descrptor de la salida
  */
 void DigitalOutputToggle(digital_output_t output);
+
+/**
+ * @brief Crea una entrada digital
+ * 
+ * @param port Numero del puerto de la entrada GPIO
+ * @param pin Numero del termial del puerto
+ * @return digital_input_t Puntero de refencia de la salida
+ */
+digital_input_t DigitalInputCreate(uint8_t port, uint8_t pin);
 
 /* === End of documentation ==================================================================== */
 
