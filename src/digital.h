@@ -96,7 +96,34 @@ digital_input_t DigitalInputCreate(uint8_t port, uint8_t pin);
  * @return true Estado actual del boton
  * @return false Estado actual del boton
  */
-bool DigitalInputGetState(digital_input_t tecla);
+bool DigitalInputGetState(digital_input_t input);
+
+/**
+ * @brief Detecta cuando hay un cambio en el estdo de la tecla
+ * 
+ * @param tecla Puntero al objeto tecla
+ * @return true 
+ * @return false 
+ */
+bool DigitalInputHasChange(digital_input_t input);
+
+/**
+ * @brief Detecta cuando la tecla se activa
+ * 
+ * @param tecla Puntero al objeto tecla
+ * @return true 
+ * @return false 
+ */
+bool DigitalInputHasActivate(digital_input_t input);
+
+/**
+ * @brief Detecta cuando la tecla se desactiva
+ * 
+ * @param tecla Puntero al objeto tecla
+ * @return true 
+ * @return false 
+ */
+bool DigitalInputHasDesactivate(digital_input_t input);
 
 /* === End of documentation ==================================================================== */
 

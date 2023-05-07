@@ -55,6 +55,7 @@ struct digital_input_s{
    uint8_t pin;   //!< Almacena el numero de la terminal de entrada
    bool allocated; //!< Bandera para indicar el uso
    bool inverted; //!< Determina si usa logica activa en alta o baja
+   bool last_state; //!< Almacena el estado de la tecla
 };
 
 
@@ -69,7 +70,7 @@ digital_input_t DigitalInputAllocate(void);
 /* === Private variable definitions ============================================================ */
 
 /* === Private function implementation ========================================================= */
-//busca un lugar en el arreglo de estructuras creado, lo reserva y envia su puntero
+//busca un lugar en el arreglo de estructuras de SALIDAS creado, lo reserva y envia su puntero
 digital_output_t DigitalOutputAllocate(void){
    digital_output_t output = NULL;
 
@@ -85,8 +86,7 @@ digital_output_t DigitalOutputAllocate(void){
    }
    return output;
 }
-
-//
+//busca un lugar en el arreglo de estructuras de ENTRADAS creado, lo reserva y envia su puntero
 digital_input_t DigitalInputAllocate(void){
    digital_input_t input = NULL;
 
@@ -121,16 +121,19 @@ digital_output_t DigitalOutputCreate(uint8_t port, uint8_t pin){
 //activa una SALIDA
 void DigitalOutputActivate(digital_output_t output){
    Chip_GPIO_SetPinState(LPC_GPIO_PORT, output->port, output->pin, true);
+
    return;
 }
 //desactiva una SALIDA
 void DigitalOutputDesactivate(digital_output_t output){
    Chip_GPIO_SetPinState(LPC_GPIO_PORT, output->port, output->pin, false);
+
    return;
 }
 //cambia de estado una SALIDA
 void DigitalOutputToggle(digital_output_t output){
    Chip_GPIO_SetPinToggle(LPC_GPIO_PORT, output->port, output->pin);
+
    return;
 }
 //completa la una estructura de ENTRADA con los valores en el puntero solicitado si el punero no es null
@@ -147,9 +150,36 @@ digital_input_t DigitalInputCreate(uint8_t port, uint8_t pin){
    
    return input;
 }
-//obtiene el estado de la tecla
-bool DigitalInputGetState(digital_input_t tecla){
-   return (!tecla->inverted ^ Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, tecla->port, tecla->pin));
+//obtiene el estado de la tecla y la invierte si inverted esta activo
+bool DigitalInputGetState(digital_input_t input){
+   return (!input->inverted ^ Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, input->port, input->pin));
+}
+//lee el estado actual de la ENTRADA, determina si cambio y almacena el nuevo estado
+bool DigitalInputHasChange(digital_input_t input){
+   bool state = DigitalInputGetState(input);
+   bool result = (state != input->last_state);
+
+   input->last_state = state;
+
+   return result;
+}
+//determina si la ENTRADA fue activada y almacene el estado actual
+bool DigitalInputHasActivate(digital_input_t input){
+   bool state = DigitalInputGetState(input);
+   bool result = (state && !input->last_state);
+
+   input->last_state = state;
+
+   return result;
+}
+//determina si la ENTRADA fue desactivada y almacena el estado actual
+bool DigitalInputHasDesactivate(digital_input_t input){
+   bool state = DigitalInputGetState(input);
+   bool result = (!state && input->last_state);
+
+   input->last_state = state;
+
+   return result;
 }
 
 /* === End of documentation ==================================================================== */

@@ -132,7 +132,7 @@ int main(void) {
     digital_input_t tecla_4;
 
     int divisor = 0;
-    bool current_state, last_state = false;
+    //bool current_state, last_state = false;
 
     Chip_SCU_PinMuxSet(LED_R_PORT, LED_R_PIN, SCU_MODE_INBUFF_EN | SCU_MODE_INACT | LED_R_FUNC);
     Chip_GPIO_SetPinState(LPC_GPIO_PORT, LED_R_GPIO, LED_R_BIT, false);
@@ -157,41 +157,34 @@ int main(void) {
 
     /******************/
     Chip_SCU_PinMuxSet(TEC_1_PORT, TEC_1_PIN, SCU_MODE_INBUFF_EN | SCU_MODE_PULLUP | TEC_1_FUNC);
-    //Chip_GPIO_SetPinDIR(LPC_GPIO_PORT, TEC_1_GPIO, TEC_1_BIT, false);
     tecla_1 = DigitalInputCreate(TEC_1_GPIO, TEC_1_BIT);
 
     Chip_SCU_PinMuxSet(TEC_2_PORT, TEC_2_PIN, SCU_MODE_INBUFF_EN | SCU_MODE_PULLUP | TEC_2_FUNC);
-    //Chip_GPIO_SetPinDIR(LPC_GPIO_PORT, TEC_2_GPIO, TEC_2_BIT, false);
     tecla_2 = DigitalInputCreate(TEC_2_GPIO, TEC_2_BIT);
 
     Chip_SCU_PinMuxSet(TEC_3_PORT, TEC_3_PIN, SCU_MODE_INBUFF_EN | SCU_MODE_PULLUP | TEC_3_FUNC);
-    //Chip_GPIO_SetPinDIR(LPC_GPIO_PORT, TEC_3_GPIO, TEC_3_BIT, false);
     tecla_3 = DigitalInputCreate(TEC_3_GPIO, TEC_3_BIT);
 
     Chip_SCU_PinMuxSet(TEC_4_PORT, TEC_4_PIN, SCU_MODE_INBUFF_EN | SCU_MODE_PULLUP | TEC_4_FUNC);
-    //Chip_GPIO_SetPinDIR(LPC_GPIO_PORT, TEC_4_GPIO, TEC_4_BIT, false);
     tecla_4 = DigitalInputCreate(TEC_4_GPIO, TEC_4_BIT);
 
     while (true) {
-        //if (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_1_GPIO, TEC_1_BIT) == 0) {
         if (DigitalInputGetState(tecla_1)) {
             DigitalOutputActivate(led_azul);
         } else {
             DigitalOutputDesactivate(led_azul);
         }
 
-        //current_state = (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_2_GPIO, TEC_2_BIT) == 0);
-        current_state = DigitalInputGetState(tecla_2);
-        if ((current_state) && (!last_state)) {
+        //current_state = DigitalInputGetState(tecla_2);
+        //if ((current_state) && (!last_state)) {
+        if (DigitalInputHasActivate(tecla_2)) {
             DigitalOutputToggle(led_rojo);
         }
-        last_state = current_state;
+        //last_state = current_state;
 
-        //if (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_3_GPIO, TEC_3_BIT) == 0) {
         if (DigitalInputGetState(tecla_3)) {
             DigitalOutputActivate(led_amarillo);
         }
-        //if (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_4_GPIO, TEC_4_BIT) == 0) {
         if (DigitalInputGetState(tecla_4)) {
             DigitalOutputDesactivate(led_amarillo);
         }
