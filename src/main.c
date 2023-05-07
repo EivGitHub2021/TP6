@@ -173,22 +173,26 @@ int main(void) {
     tecla_4 = DigitalInputCreate(TEC_4_GPIO, TEC_4_BIT);
 
     while (true) {
-        if (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_1_GPIO, TEC_1_BIT) == 0) {
+        //if (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_1_GPIO, TEC_1_BIT) == 0) {
+        if (DigitalInputGetState(tecla_1)) {
             DigitalOutputActivate(led_azul);
         } else {
             DigitalOutputDesactivate(led_azul);
         }
 
-        current_state = (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_2_GPIO, TEC_2_BIT) == 0);
+        //current_state = (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_2_GPIO, TEC_2_BIT) == 0);
+        current_state = DigitalInputGetState(tecla_2);
         if ((current_state) && (!last_state)) {
             DigitalOutputToggle(led_rojo);
         }
         last_state = current_state;
 
-        if (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_3_GPIO, TEC_3_BIT) == 0) {
+        //if (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_3_GPIO, TEC_3_BIT) == 0) {
+        if (DigitalInputGetState(tecla_3)) {
             DigitalOutputActivate(led_amarillo);
         }
-        if (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_4_GPIO, TEC_4_BIT) == 0) {
+        //if (Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, TEC_4_GPIO, TEC_4_BIT) == 0) {
+        if (DigitalInputGetState(tecla_4)) {
             DigitalOutputDesactivate(led_amarillo);
         }
 

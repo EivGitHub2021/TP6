@@ -147,6 +147,11 @@ digital_input_t DigitalInputCreate(uint8_t port, uint8_t pin){
    
    return input;
 }
+//obtiene el estado de la tecla
+bool DigitalInputGetState(digital_input_t tecla){
+   return (!tecla->inverted ^ Chip_GPIO_ReadPortBit(LPC_GPIO_PORT, tecla->port, tecla->pin));
+}
+
 /* === End of documentation ==================================================================== */
 
 /** @} End of module definition for doxygen */

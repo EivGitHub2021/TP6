@@ -30,6 +30,7 @@ SPDX-License-Identifier: MIT
 
 /* === Headers files inclusions ================================================================ */
 #include <stdint.h>
+#include <stdbool.h>
 
 /* === Cabecera C++ ============================================================================ */
 
@@ -87,6 +88,15 @@ void DigitalOutputToggle(digital_output_t output);
  * @return digital_input_t Puntero de refencia de la salida
  */
 digital_input_t DigitalInputCreate(uint8_t port, uint8_t pin);
+
+/**
+ * @brief Obtiene el estado del boton
+ * 
+ * @param tecla Puntero al boton designado
+ * @return true Estado actual del boton
+ * @return false Estado actual del boton
+ */
+bool DigitalInputGetState(digital_input_t tecla);
 
 /* === End of documentation ==================================================================== */
 
