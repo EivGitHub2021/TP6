@@ -132,7 +132,6 @@ int main(void) {
     digital_input_t tecla_4;
 
     int divisor = 0;
-    //bool current_state, last_state = false;
 
     Chip_SCU_PinMuxSet(LED_R_PORT, LED_R_PIN, SCU_MODE_INBUFF_EN | SCU_MODE_INACT | LED_R_FUNC);
     Chip_GPIO_SetPinState(LPC_GPIO_PORT, LED_R_GPIO, LED_R_BIT, false);
@@ -175,12 +174,9 @@ int main(void) {
             DigitalOutputDesactivate(led_azul);
         }
 
-        //current_state = DigitalInputGetState(tecla_2);
-        //if ((current_state) && (!last_state)) {
         if (DigitalInputHasActivate(tecla_2)) {
             DigitalOutputToggle(led_rojo);
         }
-        //last_state = current_state;
 
         if (DigitalInputGetState(tecla_3)) {
             DigitalOutputActivate(led_amarillo);
