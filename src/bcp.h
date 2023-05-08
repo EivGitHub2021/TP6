@@ -29,6 +29,9 @@ SPDX-License-Identifier: MIT
  ** @{ */
 
 /* === Headers files inclusions ================================================================ */
+#include "chip.h"
+#include <stdbool.h>
+#include "digital.h"
 
 /* === Cabecera C++ ============================================================================ */
 
@@ -39,10 +42,27 @@ extern "C" {
 /* === Public macros definitions =============================================================== */
 
 /* === Public data type declarations =========================================================== */
+typedef struct placa_s{
+   digital_output_t led_azul;
+   digital_output_t led_rojo;
+   digital_output_t led_amarillo;
+   digital_output_t led_verde;
+
+   digital_input_t tecla_1;
+   digital_input_t tecla_2;
+   digital_input_t tecla_3;
+   digital_input_t tecla_4;
+}const * const placa_t;
 
 /* === Public variable declarations ============================================================ */
 
 /* === Public function declarations ============================================================ */
+/**
+ * @brief 
+ * 
+ * @return bcp_t 
+ */
+placa_t BoardCreate(void);
 
 /* === End of documentation ==================================================================== */
 
