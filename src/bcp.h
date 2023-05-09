@@ -19,8 +19,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 SPDX-License-Identifier: MIT
 *************************************************************************************************/
 
-#ifndef TEMPLATE_H
-#define TEMPLATE_H
+//#ifndef TEMPLATE_H
+//#define TEMPLATE_H
 
 /** \brief Declaraciones publicas del modulo board suport
  **
@@ -72,4 +72,4 @@ placa_t BoardCreate(void);
 
 /** @} End of module definition for doxygen */
 
-#endif /* TEMPLATE_H */
+//#endif /* TEMPLATE_H */
