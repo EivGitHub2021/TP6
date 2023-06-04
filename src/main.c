@@ -42,6 +42,7 @@
 
 #include "bcp.h"
 #include "chip.h"
+#include "define.h"
 #include "digital.h"
 #include "pantalla.h"
 #include <stdbool.h>
@@ -61,7 +62,7 @@
 /* === Private function implementation ========================================================= */
 
 /* === Public function implementation ========================================================= */
-#ifndef PONCHO
+#ifdef CIA
 int main(void) {
 
     int divisor = 0;
@@ -100,6 +101,7 @@ int main(void) {
     }
 }
 #endif
+
 #ifdef PONCHO
 int main(void) {
     placa_t board = BoardCreate();

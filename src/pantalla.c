@@ -28,6 +28,7 @@ SPDX-License-Identifier: MIT
 /* === Headers files inclusions =============================================================== */
 
 #include "pantalla.h"
+#include "define.h"
 #include <string.h>
 
 /* === Macros definitions ====================================================================== */
@@ -107,7 +108,7 @@ void DisplayWriteBCD(display_t display, uint8_t * number, uint8_t size) {
 void DisplayRefresh(display_t display) {
     display->driver->ScreenTurnOff();
     display->active_digit = (display->active_digit + 1) % display->digits;
-    display->driver->SegementsTurnOn(display->memory[display->active_digit]);
+    display->driver->SegmentsTurnOn(display->memory[display->active_digit]);
     display->driver->DigitTurnOn(display->active_digit);
 }
 /* === End of documentation ==================================================================== */

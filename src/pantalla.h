@@ -61,14 +61,12 @@ typedef void (*display_segmentos_on_t)(uint8_t segments);
 typedef void (*display_digit_on_t)(uint8_t digit);
 
 //! Estructura con las funcion de bajo nivel para manejo de la pantalla
-// typedef struct display_driver_s * display_driver_t;
 typedef struct display_driver_s {
     // struct display_driver_s {
-    display_screen_off_t ScreenTurnOff;     //!< Funcion para apagar los segmentos y los digitos
-    display_segmentos_on_t SegementsTurnOn; //!< Funcion para prender determinados segmentos
-    display_digit_on_t DigitTurnOn;         //!< Funcion para prender un digito
-    //};                                          //!< Puntero al controlador de pantalla
-} const * const display_driver_t; //!< Puntero al controlador de pantalla
+    display_screen_off_t ScreenTurnOff;    //!< Funcion para apagar los segmentos y los digitos
+    display_segmentos_on_t SegmentsTurnOn; //!< Funcion para prender determinados segmentos
+    display_digit_on_t DigitTurnOn;        //!< Funcion para prender un digito
+} const * const display_driver_t;          //!< Puntero al controlador de pantalla
 
 /* === Public variable declarations ============================================================ */
 

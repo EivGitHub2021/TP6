@@ -30,6 +30,7 @@ SPDX-License-Identifier: MIT
 
 /* === Headers files inclusions ================================================================ */
 #include "chip.h"
+#include "define.h"
 #include "digital.h"
 #include "pantalla.h"
 
@@ -40,10 +41,9 @@ extern "C" {
 #endif
 
 /* === Public macros definitions =============================================================== */
-#define PONCHO
 
 /* === Public data type declarations =========================================================== */
-#ifndef PONCHO
+#ifdef CIA
 typedef struct placa_s {
     digital_output_t led_azul;
     digital_output_t led_rojo;
