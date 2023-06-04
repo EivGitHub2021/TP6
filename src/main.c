@@ -106,6 +106,10 @@ int main(void) {
 int main(void) {
     placa_t board = BoardCreate();
 
+#ifdef TICK
+    SisTick_Init(1000);
+#endif
+
     while (true) {
         if (DigitalInputHasActivate(board->acept)) {
             DisplayWriteBCD(board->display, (uint8_t[]){1, 2, 3, 4}, 4);
@@ -127,7 +131,9 @@ int main(void) {
         if (DigitalInputHasActivate(board->increment)) {
         }
 
+#ifndef TICK
         DisplayRefresh(board->display);
+#endif
 
         for (int index = 0; index < 100; index++) {
             __asm("NOP");

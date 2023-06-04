@@ -44,6 +44,9 @@ extern "C" {
 //! Si se define PONCHO se compila para para la placa adicional de interface (poncho)
 #define PONCHO
 
+//! Si se define TICK se activa la funcion de systick
+#define TICK
+
 //! Permite configurar la cantidad de digitos que tiene la placa a trabajar
 //#define DISPLAY_MAX_DIGITS 8
 
