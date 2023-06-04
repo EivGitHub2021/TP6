@@ -53,6 +53,19 @@ typedef struct placa_s{
    digital_input_t tecla_4;
 }const * const placa_t;
 
+typedef struct poncho_s{
+   digital_output_t buzzer;
+
+   digital_input_t acept;
+   digital_input_t cancel;
+
+   digital_input_t increment;
+   digital_input_t decrement;
+
+   digital_input_t set_time;
+   digital_input_t set_alarm;
+}const * const poncho_t;
+
 /* === Public variable declarations ============================================================ */
 
 /* === Public function declarations ============================================================ */

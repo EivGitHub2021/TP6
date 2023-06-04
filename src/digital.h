@@ -29,8 +29,8 @@ SPDX-License-Identifier: MIT
  ** @{ */
 
 /* === Headers files inclusions ================================================================ */
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 /* === Cabecera C++ ============================================================================ */
 
@@ -52,46 +52,46 @@ typedef struct digital_input_s * digital_input_t;
 /* === Public function declarations ============================================================ */
 /**
  * @brief Modo para crear una salida digital
- * 
+ *
  * @param port Puerto GPIO que contiene la salida
  * @param pin Numero de terminal del puerto
  * @return digital_output_t Puntero a la salida creada
  */
-digital_output_t DigitalOutputCreate(uint8_t port, uint8_t pin);
+digital_output_t DigitalOutputCreate(uint8_t port, uint8_t pin, bool inverted);
 
 /**
  * @brief Modo para activar la salida
- * 
+ *
  * @param output puntero al descrptor de la salida
  */
 void DigitalOutputActivate(digital_output_t output);
 
 /**
  * @brief Modo para desactivar la salida
- * 
+ *
  * @param output puntero al descrptor de la salida
  */
 void DigitalOutputDesactivate(digital_output_t output);
 
 /**
  * @brief Modo para cambiar de estado la salida
- * 
+ *
  * @param output puntero al descrptor de la salida
  */
 void DigitalOutputToggle(digital_output_t output);
 
 /**
  * @brief Crea una entrada digital
- * 
+ *
  * @param port Numero del puerto de la entrada GPIO
  * @param pin Numero del termial del puerto
  * @return digital_input_t Puntero de refencia de la salida
  */
-digital_input_t DigitalInputCreate(uint8_t port, uint8_t pin);
+digital_input_t DigitalInputCreate(uint8_t port, uint8_t pin, bool inverted);
 
 /**
  * @brief Obtiene el estado del boton
- * 
+ *
  * @param tecla Puntero al boton designado
  * @return true Estado actual del boton
  * @return false Estado actual del boton
@@ -100,28 +100,28 @@ bool DigitalInputGetState(digital_input_t input);
 
 /**
  * @brief Detecta cuando hay un cambio en el estdo de la tecla
- * 
+ *
  * @param tecla Puntero al objeto tecla
- * @return true 
- * @return false 
+ * @return true
+ * @return false
  */
 bool DigitalInputHasChange(digital_input_t input);
 
 /**
  * @brief Detecta cuando la tecla se activa
- * 
+ *
  * @param tecla Puntero al objeto tecla
- * @return true 
- * @return false 
+ * @return true
+ * @return false
  */
 bool DigitalInputHasActivate(digital_input_t input);
 
 /**
  * @brief Detecta cuando la tecla se desactiva
- * 
+ *
  * @param tecla Puntero al objeto tecla
- * @return true 
- * @return false 
+ * @return true
+ * @return false
  */
 bool DigitalInputHasDesactivate(digital_input_t input);
 

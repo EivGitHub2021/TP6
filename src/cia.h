@@ -27,6 +27,7 @@ SPDX-License-Identifier: MIT
 
 /* === Headers files inclusions =============================================================== */
 
+
 /* === Macros definitions ====================================================================== */
 #define LED_R_PORT 2
 #define LED_R_PIN 0
