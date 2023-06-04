@@ -30,7 +30,6 @@ SPDX-License-Identifier: MIT
 
 /* === Headers files inclusions ================================================================ */
 #include "chip.h"
-#include <stdbool.h>
 #include "digital.h"
 
 /* === Cabecera C++ ============================================================================ */
