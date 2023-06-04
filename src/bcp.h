@@ -19,8 +19,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 SPDX-License-Identifier: MIT
 *************************************************************************************************/
 
-//#ifndef TEMPLATE_H
-//#define TEMPLATE_H
+#ifndef BSP_H
+#define BSP_H
 
 /** \brief Declaraciones publicas del modulo board suport
  **
@@ -31,6 +31,7 @@ SPDX-License-Identifier: MIT
 /* === Headers files inclusions ================================================================ */
 #include "chip.h"
 #include "digital.h"
+#include "pantalla.h"
 
 /* === Cabecera C++ ============================================================================ */
 
@@ -39,40 +40,46 @@ extern "C" {
 #endif
 
 /* === Public macros definitions =============================================================== */
+#define PONCHO
 
 /* === Public data type declarations =========================================================== */
-typedef struct placa_s{
-   digital_output_t led_azul;
-   digital_output_t led_rojo;
-   digital_output_t led_amarillo;
-   digital_output_t led_verde;
+#ifndef PONCHO
+typedef struct placa_s {
+    digital_output_t led_azul;
+    digital_output_t led_rojo;
+    digital_output_t led_amarillo;
+    digital_output_t led_verde;
 
-   digital_input_t tecla_1;
-   digital_input_t tecla_2;
-   digital_input_t tecla_3;
-   digital_input_t tecla_4;
-}const * const placa_t;
+    digital_input_t tecla_1;
+    digital_input_t tecla_2;
+    digital_input_t tecla_3;
+    digital_input_t tecla_4;
+} const * const placa_t;
+#endif
 
-typedef struct poncho_s{
-   digital_output_t buzzer;
+#ifdef PONCHO
+typedef struct placa_s {
+    digital_output_t buzzer;
 
-   digital_input_t acept;
-   digital_input_t cancel;
+    digital_input_t acept;
+    digital_input_t cancel;
 
-   digital_input_t increment;
-   digital_input_t decrement;
+    digital_input_t increment;
+    digital_input_t decrement;
 
-   digital_input_t set_time;
-   digital_input_t set_alarm;
-}const * const poncho_t;
+    digital_input_t set_time;
+    digital_input_t set_alarm;
 
+    display_t display;
+} const * const placa_t;
+#endif
 /* === Public variable declarations ============================================================ */
 
 /* === Public function declarations ============================================================ */
 /**
- * @brief 
- * 
- * @return bcp_t 
+ * @brief
+ *
+ * @return bcp_t
  */
 placa_t BoardCreate(void);
 
@@ -84,4 +91,4 @@ placa_t BoardCreate(void);
 
 /** @} End of module definition for doxygen */
 
-//#endif /* TEMPLATE_H */
+#endif /* BSP_H*/

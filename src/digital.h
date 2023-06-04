@@ -19,8 +19,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 SPDX-License-Identifier: MIT
 *************************************************************************************************/
 
-#ifndef TEMPLATE_H
-#define TEMPLATE_H
+#ifndef DIGITAL_H
+#define DIGITAL_H
 
 /** \brief Declaraciones publicas del modulo de alumnos
  **
@@ -133,4 +133,4 @@ bool DigitalInputHasDesactivate(digital_input_t input);
 
 /** @} End of module definition for doxygen */
 
-#endif /* TEMPLATE_H */
+#endif /* DIGITAL_H */

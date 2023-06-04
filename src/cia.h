@@ -18,6 +18,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 SPDX-License-Identifier: MIT
 *************************************************************************************************/
+#ifndef CIA_H
+#define CIA_H
 
 /** \brief Implementacion del modulo de alumnos
  **
@@ -26,7 +28,6 @@ SPDX-License-Identifier: MIT
  ** @{ */
 
 /* === Headers files inclusions =============================================================== */
-
 
 /* === Macros definitions ====================================================================== */
 #define LED_R_PORT 2
@@ -106,3 +107,4 @@ SPDX-License-Identifier: MIT
 /* === End of documentation ==================================================================== */
 
 /** @} End of module definition for doxygen */
+#endif /* CIA_H */

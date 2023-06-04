@@ -40,10 +40,11 @@
 
 /* === Headers files inclusions =============================================================== */
 
-#include "chip.h"
-#include <stdbool.h>
-#include "digital.h"
 #include "bcp.h"
+#include "chip.h"
+#include "digital.h"
+#include "pantalla.h"
+#include <stdbool.h>
 
 /* === Macros definitions ====================================================================== */
 
@@ -60,35 +61,35 @@
 /* === Private function implementation ========================================================= */
 
 /* === Public function implementation ========================================================= */
-
+#ifndef PONCHO
 int main(void) {
 
     int divisor = 0;
 
-    placa_t placa = BoardCreate();
+    placa_t board = BoardCreate();
 
     while (true) {
-        if (DigitalInputGetState(placa->tecla_1)) {
-            DigitalOutputActivate(placa->led_azul);
+        if (DigitalInputGetState(board->tecla_1)) {
+            DigitalOutputActivate(board->led_azul);
         } else {
-            DigitalOutputDesactivate(placa->led_azul);
+            DigitalOutputDesactivate(board->led_azul);
         }
 
-        if (DigitalInputHasActivate(placa->tecla_2)) {
-            DigitalOutputToggle(placa->led_rojo);
+        if (DigitalInputHasActivate(board->tecla_2)) {
+            DigitalOutputToggle(board->led_rojo);
         }
 
-        if (DigitalInputGetState(placa->tecla_3)) {
-            DigitalOutputActivate(placa->led_amarillo);
+        if (DigitalInputGetState(board->tecla_3)) {
+            DigitalOutputActivate(board->led_amarillo);
         }
-        if (DigitalInputGetState(placa->tecla_4)) {
-            DigitalOutputDesactivate(placa->led_amarillo);
+        if (DigitalInputGetState(board->tecla_4)) {
+            DigitalOutputDesactivate(board->led_amarillo);
         }
 
         divisor++;
         if (divisor == 5) {
             divisor = 0;
-            DigitalOutputToggle(placa->led_verde);
+            DigitalOutputToggle(board->led_verde);
         }
 
         for (int index = 0; index < 100; index++) {
@@ -98,7 +99,40 @@ int main(void) {
         }
     }
 }
+#endif
+#ifdef PONCHO
+int main(void) {
+    placa_t board = BoardCreate();
 
+    while (true) {
+        if (DigitalInputHasActivate(board->acept)) {
+            DisplayWriteBCD(board->display, (uint8_t[]){1, 2, 3, 4}, 4);
+        }
+
+        if (DigitalInputHasDesactivate(board->cancel)) {
+            DisplayWriteBCD(board->display, NULL, 0);
+        }
+
+        if (DigitalInputHasActivate(board->set_time)) {
+        }
+
+        if (DigitalInputHasActivate(board->set_alarm)) {
+        }
+
+        if (DigitalInputHasActivate(board->decrement)) {
+        }
+
+        if (DigitalInputHasActivate(board->increment)) {
+        }
+
+        DisplayRefresh(board->display);
+
+        for (int index = 0; index < 100; index++) {
+            __asm("NOP");
+        }
+    }
+}
+#endif
 /* === End of documentation ==================================================================== */
 
 /** @} End of module definition for doxygen */
