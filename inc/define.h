@@ -24,8 +24,8 @@ SPDX-License-Identifier: MIT
 
 /** \brief Archivo para crear solo definiciones para macros
  **
- ** \addtogroup 
- ** \brief 
+ ** \addtogroup
+ ** \brief
  ** @{ */
 
 /* === Headers files inclusions ================================================================ */
@@ -47,9 +47,14 @@ extern "C" {
 //! Si se define TICK se activa la funcion de systick
 #define TICK
 
-//! Permite configurar la cantidad de digitos que tiene la placa a trabajar
+//! Permite configurar la cantidad de digitos maximos
 //#define DISPLAY_MAX_DIGITS 8
 
+//! Define el numero de entradas digitales (por defecto es 4)
+#define INPUT_INSTANCES 6
+
+//! Define el numero de salidas digitales (por defecto es 4)
+#define OUTPUT_INSTANCES 4
 
 /* === End of documentation ==================================================================== */
 

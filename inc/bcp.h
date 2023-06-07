@@ -82,6 +82,7 @@ typedef struct placa_s {
  * @return bcp_t
  */
 placa_t BoardCreate(void);
+void SisTick_Init(uint16_t ticks);
 
 /* === End of documentation ==================================================================== */
 

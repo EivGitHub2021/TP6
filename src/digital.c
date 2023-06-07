@@ -91,7 +91,7 @@ digital_input_t DigitalInputAllocate(void) {
 
     static struct digital_input_s instancias[INPUT_INSTANCES] = {0};
 
-    for (int i = 0; i < OUTPUT_INSTANCES; i++) {
+    for (int i = 0; i < INPUT_INSTANCES; i++) {
         if (!instancias[i].allocated) {
             instancias[i].allocated = true;
             input = &instancias[i];

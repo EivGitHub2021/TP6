@@ -120,15 +120,19 @@ int main(void) {
         }
 
         if (DigitalInputHasActivate(board->set_time)) {
+            DisplayWriteBCD(board->display, (uint8_t[]){5, 6, 7, 8}, 4);
         }
 
         if (DigitalInputHasActivate(board->set_alarm)) {
+            DisplayWriteBCD(board->display, (uint8_t[]){9, 2, 3, 4}, 4);
         }
 
         if (DigitalInputHasActivate(board->decrement)) {
+            DisplayWriteBCD(board->display, (uint8_t[]){0, 0, 0, 0}, 4);
         }
 
         if (DigitalInputHasActivate(board->increment)) {
+            DisplayWriteBCD(board->display, (uint8_t[]){9, 9, 9, 9}, 4);
         }
 
 #ifndef TICK

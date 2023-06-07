@@ -29,6 +29,7 @@ SPDX-License-Identifier: MIT
  ** @{ */
 
 /* === Headers files inclusions ================================================================ */
+#include "define.h"
 #include <stdbool.h>
 #include <stdint.h>
 
